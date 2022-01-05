@@ -1,0 +1,20 @@
+header
+    a.logo(href='/inventory') PrintOK
+    nav
+        ul.nav__links
+            li
+                a.nav__links__items(href='/inventory') Inventory
+            li
+                a.nav__links__items(href='/diagrams',id=`diagrams`) Diagrams
+            li
+                a.nav__links__items(href='/monitoring') Monitoring
+            li
+                a.nav__links__items(href='/returns', id=`returns`) Returns
+            li
+                a.nav__links__items(href='/add') Add
+    ul.nav__menu
+        li
+            span Logged as:
+                span(id='username')= user.login.toUpperCase()
+        li
+            a.logOutBtn Logout

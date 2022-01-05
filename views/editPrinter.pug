@@ -1,0 +1,68 @@
+extends base
+
+block append head
+
+block content
+    
+    section(id='addPrinter')
+        .main
+            div.form__wrap
+                form.edit__printer
+                    div.form__group
+                        label(for='model') model
+                        input(type='text' name='model', id='model', value=`${printer.model}`)
+                    div.form__group
+                        label(for='sn') sn
+                        input(type='text' name='sn', id='sn', value=`${printer.sn}`)
+                    div.form__group
+                        label(for='ip') ip
+                        input(type='text' name='ip', id='ip', value=`${printer.ip}`)
+                    div.form__group
+                        label(for='location', value=`${printer.location}`) location
+                        select.item(name='location', id='locations')
+                            //- input(type='text' name='location', id='location', value=`${printer.locations}`)
+                            //- option(selected)
+                            each value of locations
+                                if printer.location === value.name
+                                    option(selected value=`${value.name}`)= printer.location
+                                if printer.location !== value.name
+                                    option(value=`${value.name}`)= value.name
+
+                    div.form__group
+                        label(for='department') department
+                        if printer.department === undefined
+                            input(type='text' name='department', id='department')
+                        if printer.department !== undefined
+                            input(type='text' name='department', id='department', value=`${printer.department}`)
+            div.form__wrap
+                form
+                    div.form__group
+                        label(for='owner') owner
+                        if printer.owner === undefined
+                            input(type='text' name='owner', id='owner', value=``)
+                        if printer.owner !== undefined
+                            input(type='text' name='owner', id='owner', value=`${printer.owner}`)
+                    div.form__group
+                        label(for='contract') contract
+                        if printer.contract === undefined
+                            input(type='text' name='contract', id='contract', value=``)
+                        if printer.contract !== undefined
+                            input(type='text' name='contract', id='contract', value=`${printer.contract}`)
+                    div.form__group
+                        label(for='returns') returns
+                        input(type='text' name='returns', id='returns', value=`${printer.returns}`)
+                    div.form__group
+                        label(for='notes')  notes
+                        if printer.notes === undefined
+                            input(type='text' name='notes', id='notes', value=``)
+                        if printer.notes !== undefined
+                            input(type='text' name='notes', id='notes', value=`${printer.notes}`)
+        .button__group
+            a.login__btn--back(href='/inventory',id='btn--back')
+                svg.login__icon--cancel
+                    use(xlink:href='/img/sprite.svg#icon-arrow-long-left')
+                span Cancel
+            a.login__btn--save(id='btn--save', data-id=`${printer.id}`)
+                svg.login__icon--save
+                    use(xlink:href='/img/sprite.svg#icon-save')
+                span Save

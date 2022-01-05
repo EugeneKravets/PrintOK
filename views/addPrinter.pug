@@ -1,0 +1,53 @@
+extends base
+
+block append head
+
+block content
+    section(id='addPrinter')
+        .main
+            div.form__wrap
+                form
+                    div.form__group
+                        label(for='model') model
+                        input(type='text' name='model', value=``, id='model')
+                    div.form__group
+                        label(for='sn') sn
+                        input(type='text' name='sn', value=``, id='sn')
+                    div.form__group
+                        label(for='ip') ip
+                        input(type='text' name='ip', value=``, id='ip')
+                    div.form__group
+                        label(for='location') location
+                        //- input(type='text' name='location', value=``, id='location')
+                        select.item(name='location', id='locations')
+                            option(selected)
+                            each value of locations
+                                option(value=`${value.name}`)= value.name
+
+                    div.form__group
+                        label(for='department') department
+                        input(type='text' name='department', value=``, id='department')
+            div.form__wrap
+                form
+                    div.form__group
+                        label(for='owner') owner
+                        input(type='text' name='owner', value=``, id='owner')
+                    div.form__group
+                        label(for='contract') contract
+                        input(type='text' name='contract', value=``, id='contract')
+                    div.form__group
+                        label(for='returns') returns
+                        input(type='text' name='returns', value=``, id='returns')
+                    div.form__group
+                        label(for='notes')  notes
+                        input(type='text' name='notes', value=``, id='notes')
+        .button__group
+            a.login__btn--back(href='/inventory',id='btn--back')
+                svg.login__icon--cancel
+                    use(xlink:href='/img/sprite.svg#icon-arrow-long-left')
+                span Cancel
+            a.login__btn--save(id='btn__new--save')
+                svg.login__icon--save
+                    use(xlink:href='/img/sprite.svg#icon-save')
+                span Save
+    

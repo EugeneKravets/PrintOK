@@ -1,0 +1,48 @@
+extends base
+
+block append head
+
+block content
+    section.filter
+        div
+            button(id=`all-returns`,value=`all`).filter__btn-returns.btn ALL
+            each value of locations
+                button(id=`${value.name}`,value=`${value.name}`).filter__btn-returns.btn= `${value.name}`.toUpperCase()
+    section.tb
+        table
+            thead
+                tr
+                    th #
+                    each i in columnName
+                        if i ==='model'
+                            th= i
+                        if i ==='sn'
+                            th= i
+                        if i ==='ip'
+                            th= i
+                        if i ==='location'
+                            th= i
+                        if i ==='department'
+                            th= i 
+                        if i ==='owner'
+                            th= i
+                        if i ==='contract'
+                            th= i
+                        if i ==='returns'
+                            th= i
+                        if i ==='notes'
+                            th= i
+            tbody
+                -let num = 1
+                each value of printers
+                    tr
+                        th= num++
+                        td= value.model
+                        td= value.sn
+                        td= value.ip
+                        td= value.location
+                        td= value.department
+                        td= value.owner
+                        td= value.contract
+                        td= value.returns
+                        td= value.notes

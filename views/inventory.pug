@@ -1,0 +1,87 @@
+extends base
+
+block append head
+
+block content
+    section.filter
+        div
+            button(id=`all`,value=`all`).filter__btn.btn ALL
+            each value of locations
+                button(id=`${value.name}`,value=`${value.name}`).filter__btn.btn= `${value.name}`.toUpperCase()
+            //- button(id=`rc7`,value=`rc7`).filter__btn.btn RC7
+            //- button(id=`rc11`,value=`rc11`).filter__btn.btn RC11
+            //- button(id=`rc14`,value=`rc14`).filter__btn.btn RC14
+    if userRole === 'admin'
+        section.printer
+            div.printer__transform
+                a(href='/addprinter').printer__btn
+                    svg.printer__btn--plus
+                        use(xlink:href='/img/sprite.svg#icon-plus')
+                    span Add printer
+
+    section.tb
+        table
+            thead
+                tr
+                    th #
+                    each i in columnName
+                        if i ==='model'
+                            th= i
+                        if i ==='sn'
+                            th= i
+                        if i ==='ip'
+                            th= i
+                        if i ==='location'
+                            th= i
+                        if i ==='department'
+                            th= i 
+                        if i ==='owner'
+                            th= i
+                        if i ==='contract'
+                            th= i
+                        if i ==='returns'
+                            th= i
+                        if i ==='notes'
+                            th= i
+                    if userRole === `admin`
+                        th actions
+            tbody
+                -let num = 1
+                each value of printers
+                    tr
+                        th= num++
+                        td= value.model
+                        td= value.sn
+                        td= value.ip
+                        td= value.location
+                        td= value.department
+                        td= value.owner
+                        td= value.contract
+                        td= value.returns
+                        td= value.notes
+                        if userRole === 'admin'
+                            td
+                                .actions
+                                    .button__edit
+                                        a(href=`/inventory/${value._id}`).actions__edit
+                                            svg.actions__edit--edit
+                                                use(xlink:href='/img/sprite.svg#icon-edit')
+                                            span Edit
+                                    .button__delete
+                                        a.actions__save(data-id=`${value.id}`, id="delete_printer", value=`${value._id}`)
+                                            svg.actions__save--save
+                                                use(xlink:href='/img/sprite.svg#icon-trash')
+                                            span Delete
+    section.modal.hidden
+        button.close__modal &times;
+        h2 Are you sure want to delete ?
+        .control_buttons
+            button.control__cancel
+                svg.login__icon--cancel
+                    use(xlink:href='/img/sprite.svg#icon-arrow-long-left')
+                span Cancel
+            button.control__delete
+                svg.actions__save--save
+                    use(xlink:href='/img/sprite.svg#icon-trash')
+                span Delete
+    section.overlay.hidden

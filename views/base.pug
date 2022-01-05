@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        block head
+            meta(charset='UTF-8')
+            meta(http-equiv='X-UA-Compatible', content='IE=edge')
+            meta(name='viewport', content='width=device-width, initial-scale=1.0')
+            link(defer rel='stylesheet', href='/css/style.css')
+            link(defer rel='shortcut icon', href='/img/favicon.png', type='image/png'  sizes="16x16")
+            script(defer src='/js/bundle.js')
+            script(defer src='/socket.io/socket.io.js')
+            script(defer src="/js/socketIo.js") 
+            title PrintOK &ndash; #{title}
+    body
+        //- HEADER
+        include header
+
+        //- content
+        block content
+            

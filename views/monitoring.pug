@@ -1,0 +1,57 @@
+extends base
+
+block append head
+
+block content
+    section.filter
+        div
+            button(id='active', value=`active`).filter__btn-monitoring.btn Active
+            button(id='passive', value=`passive`).filter__btn-monitoring.btn Passive
+    section.timer
+        span.timer__name Last page reload&colon;
+        span.timer__time
+    section.monitoring-table.tb
+        table
+            thead
+                each value of locations
+                    td.monitoring__td(colspan='6')= `${value.name}`
+                    tr
+                        th model
+                        th ip
+                        th location
+                        th department
+                        th comment
+                        th status
+                    tr
+                    each p of printers
+                        if p.location === value.name
+                            td(id=``)= p.model
+                            td= p.ip
+                            td= p.location
+                            td= p.department
+                            td  
+                                div.monitoring__comment
+                                    if p.comment === `undefined`
+                                        input.monitoring(name='comment' value=``)
+                                    else
+                                        input.monitoring(name='comment' value=`${p.comment}`)
+                                    button(id=``,value=`${p._id}`).monitoring__btn--add.btn add
+                                    button(id=``,value=`${p._id}`).monitoring__btn--delete.btn delete
+                            if p.isActive === `true`
+                                td.monitoring__status--green Active
+                            if p.isActive === `false`
+                                td.monitoring__status--red Passive
+                            tr
+    section.modal.hidden
+        button.close__modal &times;
+        h2 Are you sure want to delete ?
+        .control_buttons
+            button.control__cancel
+                svg.login__icon--cancel
+                    use(xlink:href='/img/sprite.svg#icon-arrow-long-left')
+                span Cancel
+            button.control__delete
+                svg.actions__save--save
+                    use(xlink:href='/img/sprite.svg#icon-trash')
+                span Delete
+    section.overlay.hidden

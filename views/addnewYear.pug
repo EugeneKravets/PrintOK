@@ -1,0 +1,36 @@
+extends base
+
+block append head
+
+block content
+    
+    section(id='editCounter')
+        .main()
+            div.form__wrap
+                form.edit__printer
+                    each value of firstPart
+                        div.form__group
+                            label(for=`${value.name}`)= value.name
+                            input(type='text' name=`${value.name}`, value=``)
+                    //- each value of secondPart
+                    //-     div.form__group
+                    //-         label(for=`${value.name}`)= value.name
+                    //-         input(type='text' name=`${value.name}`, id=`${value._id}`, value=`${value.counter}`)
+            div.form__wrap
+                form
+                    each value of secondPart
+                         div.form__group
+                            label(for=`${value.name}`)= value.name
+                            input(type='text' name=`${value.name}`, id=``, value=``)
+                    //- div.form__group
+                    //-     label(for='owner') owner
+                    //-     input(type='text' name='owner', id='owner', value=``)
+        .button__group
+            a.login__btn--back(id='new_count__btn--back')
+                svg.login__icon--cancel
+                    use(xlink:href='/img/sprite.svg#icon-arrow-long-left')
+                span Cancel
+            a.login__btn--save(id='new_count__btn--save', data-len=`${lengthYear}`)
+                svg.login__icon--save
+                    use(xlink:href='/img/sprite.svg#icon-save')
+                span Save
